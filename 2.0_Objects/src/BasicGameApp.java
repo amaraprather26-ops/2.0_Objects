@@ -80,7 +80,7 @@ public class BasicGameApp implements Runnable {
         astro2.dy = -3;
 	}// BasicGameApp()
 
-   
+   //
 //*******************************************************************************
 //User Method Section
 //
