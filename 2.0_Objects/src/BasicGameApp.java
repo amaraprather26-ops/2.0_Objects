@@ -77,7 +77,7 @@ public class BasicGameApp implements Runnable {
 		astro = new Astronaut(400,400);
         astro2 = new Astronaut(randx, randy);
         astro2.dx = -3;
-        astro2.dy = -2;
+        astro2.dy = -3;
 	}// BasicGameApp()
 
    
