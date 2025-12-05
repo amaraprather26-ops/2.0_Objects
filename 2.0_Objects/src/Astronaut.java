@@ -41,16 +41,16 @@ public class Astronaut {
         xpos = xpos + dx;
         ypos = ypos + dy;
 
-        if (xpos > 10) {
+        if (xpos < 0) {
             dx = -dx;
         }
-        if (xpos < 960){
+        if (xpos > 1000 - width){
             dx = -dx;
         }
-        if (ypos > 10) {
+        if (ypos < 0) {
             dy = -dy;
         }
-        if (ypos < 610){
+        if (ypos > 700- height){
             dy = -dy;
         }
 
