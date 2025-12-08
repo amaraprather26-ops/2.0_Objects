@@ -63,7 +63,7 @@ public class BasicGameApp implements Runnable {
       setUpGraphics();
 
       //random range 0-9
-      int randx = (int)(Math.random() * 10) + 1;
+      int randx = (int)(Math.random() * 10);
       //Math.random picks # between a little more than 0 and a little less than one
         // ex. 0.0001 and .9999
         // *10 and take first digit as integer
