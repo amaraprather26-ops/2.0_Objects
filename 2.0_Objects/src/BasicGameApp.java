@@ -84,7 +84,7 @@ public class BasicGameApp implements Runnable {
         astro2.dy = -3;
         asteroid1 = new Asteroid(30,30);
         asteroid2 = new Asteroid(40, 60);
-        asteroid1.dx = 4;
+        asteroid2.dx = 4;
         asteroid2.dy = 0;
 	}// BasicGameApp()
 
