@@ -1,6 +1,6 @@
 public class Conditionals {
 
-    String question = "Can I do this?";
+    String question = "Is Natalie in my top 5 friends?";
     String res1 = "Absolutely";
     String res2 = "Unclear";
     String res3 = "Like 67% chance yes ";
