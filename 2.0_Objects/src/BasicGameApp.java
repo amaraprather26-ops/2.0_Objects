@@ -43,7 +43,7 @@ public class BasicGameApp implements Runnable {
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
-	private Astronaut astro;
+	private Astronaut astro1;
     public Astronaut astro2;
     public Asteroid asteroid1;
     public Asteroid asteroid2;
@@ -78,7 +78,7 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png");
         roidPic = Toolkit.getDefaultToolkit().getImage("asteroid.png");
         //load the picture
-		astro = new Astronaut(400,400);
+		astro1 = new Astronaut(400,400);
         astro2 = new Astronaut(randx, randy);
         astro2.dx = -3;
         astro2.dy = -3;
@@ -111,13 +111,28 @@ public class BasicGameApp implements Runnable {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
-		astro.move();
+		astro1.move();
         astro2.move();
         asteroid1.move();
         asteroid2.move();
-
+        Collision();
 	}
-	
+
+    public void Collision(){
+        if(astro1.hitBox.intersects(astro2.hitBox)){
+            System.out.println("Crash");
+            astro1.dx = -astro1.dx;
+            astro1.dy = -astro1.dy;
+            astro2.dx = -astro2.dx;
+            astro2.dy = -astro2.dy;
+            //astro1.isAlive = false
+
+
+
+
+        }
+    }
+
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
    		//sleep
@@ -165,11 +180,14 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
         //start
         //draw the image of the astronaut
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+        //if(astro1.isAlive = true){
+		g.drawImage(astroPic, astro1.xpos, astro1.ypos, astro1.width, astro1.height, null);
+        //}
         g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
         //draw things here
         g.drawImage(roidPic, asteroid1.xpos , asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(roidPic, asteroid2.xpos , asteroid2.ypos, asteroid2.width, asteroid2.height, null);
+        //g.drawRect(xpos, ypos, width, height)<-- would actually draw the hitBox rectangle
         //end
 		g.dispose();
 		bufferStrategy.show();
