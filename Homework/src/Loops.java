@@ -8,6 +8,7 @@ public class Loops {
         countByThrees();
         countDown();
         nestedLoop();
+        bonusLoop();
     }
     public void countUp(){
         for(int x = 1; x<6; x=x+1) {
@@ -36,6 +37,15 @@ public class Loops {
                 System.out.print(x+" ");
             }
             System.out.println();
+        }
+    }
+
+    public void bonusLoop(){
+        for(int x=1; x<5; x=x+1 ){
+            System.out.println();
+            for(int y=1; y<=x; y=y+1 ){
+                System.out.print(y+" ");
+            }
         }
     }
 
