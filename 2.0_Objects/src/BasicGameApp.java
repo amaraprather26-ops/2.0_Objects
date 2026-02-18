@@ -13,6 +13,8 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -21,8 +23,8 @@ import javax.swing.JPanel;
 
 //*******************************************************************************
 // Class Definition Section
-
-public class BasicGameApp implements Runnable {
+//Implements play button use and key use
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -82,12 +84,12 @@ public class BasicGameApp implements Runnable {
         //load the picture
 		astro1 = new Astronaut(400,400);
         astro2 = new Astronaut(randx, randy);
-        astro2.dx = -3;
-        astro2.dy = -3;
+        astro2.dx = -1;
+        astro2.dy = -1;
         asteroid1 = new Asteroid(30,30);
         asteroid2 = new Asteroid(40, 300);
-        asteroid2.dx = 0;
-        asteroid2.dy = -4;
+        asteroid2.dx = 2;
+        asteroid2.dy = -2;
 	}// BasicGameApp()
 
    //
@@ -160,7 +162,11 @@ public class BasicGameApp implements Runnable {
    
       // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
       // and trap input events (Mouse and Keyboard events)
-      canvas = new Canvas();  
+      canvas = new Canvas();
+
+      //add key listener to canvas
+       canvas.addKeyListener(this);
+
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
    
@@ -200,4 +206,31 @@ public class BasicGameApp implements Runnable {
 		g.dispose();
 		bufferStrategy.show();
 	}
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+
+        if(e.getKeyCode() == 38){
+            System.out.println("up");
+            astro1.isUp = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println(e.getKeyCode());
+        if(e.getKeyCode() == 38) {
+            System.out.println("ngu");
+        }
+        astro1.isUp = false;
+
+    }
+
+    //add key methods
 }
