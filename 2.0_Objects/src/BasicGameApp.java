@@ -123,7 +123,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 
     public void Collision(){
         if(astro1.hitBox.intersects(astro2.hitBox)) {
-            System.out.println("Crash");
+            //System.out.println("Crash");
             astro1.dx = -astro1.dx;
             astro1.dy = -astro1.dy;
             astro2.dx = -astro2.dx;
@@ -215,20 +215,37 @@ public class BasicGameApp implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println(e.getKeyCode());
-
+        if(e.getKeyCode()== 37){
+            astro1.isLeft = true;
+        }
         if(e.getKeyCode() == 38){
-            System.out.println("up");
             astro1.isUp = true;
+        }
+
+        if(e.getKeyCode()== 39){
+            astro1.isRight = true;
+        }
+        if(e.getKeyCode()== 40){
+            astro1.isDown = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         System.out.println(e.getKeyCode());
-        if(e.getKeyCode() == 38) {
-            System.out.println("ngu");
+        if(e.getKeyCode()== 37){
+            astro1.isLeft = false;
         }
-        astro1.isUp = false;
+        if(e.getKeyCode() == 38){
+            astro1.isUp = false;
+        }
+
+        if(e.getKeyCode()== 39){
+            astro1.isRight = false;
+        }
+        if(e.getKeyCode()== 40){
+            astro1.isDown = false;
+        }
 
     }
 
