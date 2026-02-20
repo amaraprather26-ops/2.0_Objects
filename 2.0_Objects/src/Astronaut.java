@@ -21,6 +21,7 @@ public class Astronaut {
     public boolean isLeft;
     public boolean isRight;
 
+
     // METHOD DEFINITION SECTION
 
     // Constructor Definition

@@ -13,8 +13,7 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -24,7 +23,7 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 //Implements play button use and key use
-public class BasicGameApp implements Runnable, KeyListener {
+public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -50,6 +49,8 @@ public class BasicGameApp implements Runnable, KeyListener {
     public Astronaut astro2;
     public Asteroid asteroid1;
     public Asteroid asteroid2;
+    public Rectangle startButton;
+    public boolean isStart;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -90,6 +91,7 @@ public class BasicGameApp implements Runnable, KeyListener {
         asteroid2 = new Asteroid(40, 300);
         asteroid2.dx = 2;
         asteroid2.dy = -2;
+        startButton = new Rectangle(100, 100, 350, 400);
 	}// BasicGameApp()
 
    //
@@ -111,14 +113,16 @@ public class BasicGameApp implements Runnable, KeyListener {
 	}
 
 
-	public void moveThings()
-	{
-      //calls the move( ) code in the objects
-		astro1.move();
-        astro2.move();
-        asteroid1.move();
-        asteroid2.move();
-        Collision();
+	public void moveThings(){
+
+        if (isStart) {
+            //calls the move( ) code in the objects
+            astro1.move();
+            astro2.move();
+            asteroid1.move();
+            asteroid2.move();
+            Collision();
+        }
 	}
 
     public void Collision(){
@@ -167,6 +171,8 @@ public class BasicGameApp implements Runnable, KeyListener {
       //add key listener to canvas
        canvas.addKeyListener(this);
 
+       canvas.addMouseListener(this);
+
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
    
@@ -204,6 +210,8 @@ public class BasicGameApp implements Runnable, KeyListener {
         //g.drawRect(xpos, ypos, width, height)<-- would actually draw the hitBox rectangle
         //end
 		g.dispose();
+        g.setColor(Color.GREEN);
+        g.fillRect(100,100,100,100);
 		bufferStrategy.show();
 	}
 
@@ -248,6 +256,37 @@ public class BasicGameApp implements Runnable, KeyListener {
         }
 
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        Rectangle pointBox = new Rectangle(e.getX(), e.getY(), 1, 1);
+        if(startButton.intersects(pointBox)){
+            System.out.println("Start Game");
+            isStart = true;
+        }
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("entered");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 
     //add key methods
 }
