@@ -20,6 +20,7 @@ public class Astronaut {
     public boolean isDown;
     public boolean isLeft;
     public boolean isRight;
+    public boolean isCrashing;
 
 
     // METHOD DEFINITION SECTION
@@ -33,8 +34,8 @@ public class Astronaut {
     public Astronaut(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx = 4;
-        dy = 1;
+        dx = -2;
+        dy = -1;
         width = 150;
         height = 150;
         isAlive = true;
@@ -43,6 +44,7 @@ public class Astronaut {
         isDown = false;
         isLeft = false;
         isRight = false;
+        isCrashing = false;
  
     } // constructor
 
@@ -51,31 +53,19 @@ public class Astronaut {
 
         xpos = xpos + dx;
         ypos = ypos + dy;
-
+/*
         if (isUp){
             dy = -Math.abs(dy);
-        }
-        if(!isUp){
-            dy = Math.abs(dy);
         }
         if(isDown){
            dy = Math.abs(dy);
         }
-        if(!isDown){
-            dy = -Math.abs(dy);
-        }
         if(isLeft){
             dx = -Math.abs(dx);
         }
-        if(!isLeft){
-            dx = Math.abs(dx);
-        }
         if(isRight){
             dx = Math.abs(dx);
-        }
-        if(!isRight){
-            dx = -Math.abs(dx);
-        }
+        }*/
 
         if (xpos < 0) {
             dx = -dx;

@@ -69,13 +69,13 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
       setUpGraphics();
 
       //random range 0-9
-      int randx = (int)(Math.random() * 10);
+      int randx = (int)(Math.random() * 900) + 1;
       //Math.random picks # between a little more than 0 and a little less than one
         // ex. 0.0001 and .9999
         // *10 and take first digit as integer
         // (int)(Math.random() * 10) + 1 for 1-10 etc.
 
-      int randy = (int)(Math.random()*700) + 1;
+      int randy = (int)(Math.random()*600) + 1;
 
       //variable and objects
       //create (construct) the objects needed for the game and load up 
@@ -83,10 +83,8 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         roidPic = Toolkit.getDefaultToolkit().getImage("asteroid.png");
         background = Toolkit.getDefaultToolkit().getImage("space.jpg");
         //load the picture
-		astro1 = new Astronaut(400,400);
+		astro1 = new Astronaut(500,400);
         astro2 = new Astronaut(randx, randy);
-        astro2.dx = -1;
-        astro2.dy = -1;
         asteroid1 = new Asteroid(30,30);
         asteroid2 = new Asteroid(40, 300);
         asteroid2.dx = 2;
@@ -122,16 +120,29 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             asteroid1.move();
             asteroid2.move();
             Collision();
+            if (astro1.isUp){
+                astro1.dy = -Math.abs(astro1.dy);
+            }
+            if(astro1.isDown){
+                astro1.dy = Math.abs(astro1.dy);
+            }
+            if(astro1.isLeft){
+                astro1.dx = -Math.abs(astro1.dx);
+            }
+            if(astro1.isRight){
+                astro1.dx = Math.abs(astro1.dx);
+            }
         }
 	}
 
     public void Collision(){
-        if(astro1.hitBox.intersects(astro2.hitBox)) {
+        if(astro1.hitBox.intersects(astro2.hitBox)&& !astro1.isCrashing) {
             //System.out.println("Crash");
             astro1.dx = -astro1.dx;
             astro1.dy = -astro1.dy;
             astro2.dx = -astro2.dx;
             astro2.dy = -astro2.dy;
+            astro1.isCrashing = true;
             //astro1.isAlive = false
         }
 
@@ -208,10 +219,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         g.drawImage(roidPic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(roidPic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
         //g.drawRect(xpos, ypos, width, height)<-- would actually draw the hitBox rectangle
-        //end
-		g.dispose();
         g.setColor(Color.GREEN);
         g.fillRect(100,100,100,100);
+
+        //end
+		g.dispose();
+
 		bufferStrategy.show();
 	}
 
@@ -280,11 +293,18 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         System.out.println("entered");
+        astro1.dy = 0;
+        astro2.dy = 0;
+        astro1.dx = 0;
+        astro2.dx = 0;
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        astro1.dy =1;
+        astro2.dy = 1;
+        astro1.dx = 2;
+        astro2.dx =2;
     }
 
 
