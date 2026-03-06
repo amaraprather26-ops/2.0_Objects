@@ -51,6 +51,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     public Asteroid asteroid2;
     public Rectangle startButton;
     public boolean isStart;
+    public Asteroid[] asteroids;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -90,6 +91,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         asteroid2.dx = 2;
         asteroid2.dy = -2;
         startButton = new Rectangle(100, 100, 350, 400);
+
+        asteroids = new Asteroid[5];
+        for(int i=0;i<asteroids.length;i++){
+            asteroids[i] = new Asteroid(i*100, i*60);
+        }
+
 	}// BasicGameApp()
 
    //
@@ -100,6 +107,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
    // main thread
    // this is the code that plays the game after you set things up
+
 	public void run() {
 
       //for the moment we will loop things forever.
@@ -119,6 +127,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             astro2.move();
             asteroid1.move();
             asteroid2.move();
+            for(int i=0; i<asteroids.length; i++) {
+                asteroids[i].move();
+            }
             Collision();
             if (astro1.isUp){
                 astro1.dy = -Math.abs(astro1.dy);
@@ -219,6 +230,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         g.drawImage(roidPic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(roidPic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
         //g.drawRect(xpos, ypos, width, height)<-- would actually draw the hitBox rectangle
+        for(int i=0; i<asteroids.length; i++){
+            g.drawImage(roidPic, asteroids[i].xpos, asteroids[i].ypos, asteroids[i].width, asteroids[i].height, null);
+        }
         g.setColor(Color.GREEN);
         g.fillRect(100,100,100,100);
 
