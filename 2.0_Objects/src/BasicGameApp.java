@@ -97,7 +97,13 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             asteroids[i] = new Asteroid(i*100, i*60);
         }
 
-	}// BasicGameApp()
+        asteroids[0].dy = -2;
+        asteroids[1].dx = -3;
+        asteroids[2].dy = 2;
+        asteroids[3].dy =-1;
+        asteroids[4].dx =-1;
+
+    }// BasicGameApp()
 
    //
 //*******************************************************************************
