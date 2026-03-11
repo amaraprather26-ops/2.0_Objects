@@ -137,6 +137,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
                 asteroids[i].move();
             }
             Collision();
+            astro1Collision();
             if (astro1.isUp){
                 astro1.dy = -Math.abs(astro1.dy);
             }
@@ -171,6 +172,14 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
         if(!asteroid1.hitBox.intersects(asteroid2.hitBox)){
             asteroid2.isCrashing = false;
+        }
+    }
+
+    public void astro1Collision(){
+        for(int i=0; i<asteroids.length; i++) {
+            if (asteroids[i].hitBox.intersects(astro1.hitBox)) {
+                System.out.println("asteroid crash");
+            }
         }
     }
 
